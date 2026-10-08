@@ -82,4 +82,30 @@ Pengujian membuktikan status koneksi sukses penuh (**0% packet loss**) dan jalur
     ![](Ping%20Windows%20Client.png)
 
 ---
+
+## 5. Prasyarat Simulator & Spesifikasi Image (Untuk Kebutuhan Replikasi Lab)
+Bagi *User* atau *Technical Reviewer* yang ingin mereplikasi, menguji, atau meninjau konfigurasi mentah lab ini, berkas topologi berkstensi `.unl` (**MultiVendor Secure SDWAN Branch Office Tunneling.unl**) telah disediakan di dalam repositori ini. 
+
+Berikut adalah spesifikasi versi *image* (QEMU & IOL) yang digunakan di dalam **PNETLab** agar seluruh konfigurasi script dan interkoneksi interface dapat termuat dengan sempurna:
+
+*   **Fortinet Firewall (HQ):** 
+    *   Template: `fortinet` (QEMU)
+    *   Nama Folder/Image: `fortinet-FGT-v6-4-build1579`
+    *   Alokasi RAM: 1024 MB | CPU: 1 Core
+*   **MikroTik Router (Branch):** 
+    *   Template: `mikrotik` (QEMU Cloud Hosted Router)
+    *   Nama Folder/Image: `mikrotik-7.24.2`
+    *   Alokasi RAM: 128 MB | CPU: 1 Core
+*   **Router Cisco (Core Provider/ISP):** 
+    *   Template: `iol` (Cisco IOS on Linux L3)
+    *   Nama File Image: `i86bi-linux-l3-adventerprisek9-m2_157_3_may_2018.bin`
+*   **Cisco Switch 1:** 
+    *   Template: `i86bi_linux` (Cisco IOS on Linux L2)
+    *   Nama File Image: `i86bi_linux-l2-adventerprisek9-ms.bin`
+*   **End-User Client (Linux & Windows):**
+    *   Linux GUI: `alpine-alpine-desktop-3-20-3` (RAM 1024 MB)
+    *   Linux CLI: `alpine-alpine-3-20-3` (RAM 512 MB)
+    *   Windows Client: `win-tiny10` (RAM 1024 MB)
+
+---
 *Dokumentasi ini disusun sebagai bagian dari portofolio implementasi infrastruktur jaringan dan pemecahan masalah keamanan tingkat entitas.*
