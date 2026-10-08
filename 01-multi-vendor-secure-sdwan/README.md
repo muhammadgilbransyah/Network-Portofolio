@@ -12,6 +12,20 @@ Infrastruktur lab ini dibangun menggunakan kombinasi tiga vendor utama:
 *   **Branch Boundary (Cabang):** MikroTik Cloud Hosted Router (RouterOS v7)
 *   **Core Provider Link (ISP):** Cisco IOL L3 (Simulasi Awan Provider)
 
+### • Tabel Pengalamatan IP (IP Addressing Table)
+
+| Perangkat (Node) | Interface | IP Address / Netmask | Deskripsi / Peruntukan |
+| :--- | :--- | :--- | :--- |
+| **Fortinet (HQ)** | `port1` | `200.200.200.2/24` | Jalur Publik menuju ISP (Router Cisco) |
+| | `port2` | `192.168.10.1/24` | Gateway Segmen LAN Pusat (Ke Cisco Switch 1) |
+| | `gre-ke-cabang` | `192.168.99.1/30` | IP Terowongan Virtual (GRE Tunnel Endpoint) |
+| **MikroTik (Branch)** | `eth1` | `100.100.100.2/24` | Jalur Publik menuju ISP (Router Cisco) |
+| | `eth2` | `192.168.20.1/24` | Gateway Segmen LAN Cabang (Ke Tiny10 Win Client) |
+| | `gre-ke-pusat` | `192.168.99.2/30` | IP Terowongan Virtual (GRE Tunnel Endpoint) |
+| **Router Cisco (ISP)** | `Ethernet0/0` | `200.200.200.1/24` | Link Interkoneksi ke arah Kantor Pusat (FortiGate) |
+| | `Ethernet0/1` | `100.100.100.1/24` | Link Interkoneksi ke arah Kantor Cabang (MikroTik) |
+
+
 ### • Dokumentasi Topologi Jaringan
 Berikut adalah rancangan topologi interkoneksi multi-vendor yang diimplementasikan:
 ![](Topology.png)
@@ -108,4 +122,4 @@ Berikut adalah spesifikasi versi *image* (QEMU & IOL) yang digunakan di dalam **
     *   Windows Client: `win-tiny10` (RAM 1024 MB)
 
 ---
-*Dokumentasi ini disusun sebagai bagian dari portofolio implementasi infrastruktur jaringan dan pemecahan masalah keamanan tingkat entitas.*
+*Dokumentasi ini disusun secara transparan sebagai bukti validitas hands-on lab yang dapat dipertanggungjawabkan.*
