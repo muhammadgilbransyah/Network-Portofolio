@@ -1,4 +1,4 @@
-# Proyek 1: Multi-Vendor Hybrid Secure Networking Lab 
+# Proyek 1: Multi-Vendor Secure SDWAN Branch Office Tunneling 
 ### Integrasi Infrastruktur Inti: FortiGate x Router Cisco x MikroTik CHR
 
 ## Deskripsi Proyek
