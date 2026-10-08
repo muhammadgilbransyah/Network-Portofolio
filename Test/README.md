@@ -1,117 +1,216 @@
-# Portofolio Lab Jaringan Multi-Vendor dan Protokol Routing Dinamis Cisco
+# Portofolio Lab Jaringan Multi-Vendor dan Routing
 
-### Implementasi Secure SD-WAN, Route Redistribution, dan Routing Cisco (OSPF, BGP, RIPv2)
+### Hands-on Networking Labs menggunakan PNETLab
 
-Selamat datang di repositori portofolio teknik jaringan saya. Repositori ini mendokumentasikan serangkaian implementasi laboratorium hands-on menggunakan simulator **PNetLab**. Proyek-proyek di dalamnya berfokus pada routing dinamis, route redistribution, recursive static routing, interdomain routing, serta konektivitas jaringan multi-vendor.
+Selamat datang di repositori portofolio saya.
+
+Repositori ini berisi kumpulan **hands-on networking labs** yang saya kerjakan menggunakan **PNETLab** untuk memperdalam pemahaman mengenai networking, routing, troubleshooting, dan konektivitas antar perangkat.
+
+Project di dalam repositori ini mencakup implementasi **Static Routing, RIPv2, OSPF, EIGRP, eBGP, Route Redistribution**, serta satu project **multi-vendor** yang menggunakan FortiGate, MikroTik, dan Cisco.
+
+Setiap project dilengkapi dengan topologi, konfigurasi utama, proses pengujian, dan hasil verifikasi.
 
 ---
 
-## Ringkasan Eksekutif Repositori Portofolio
+## Project Portfolio
 
-### Proyek 1: Multi-Vendor Secure SD-WAN Networking Lab
+### 01. Multi-Vendor Secure SDWAN Branch Office Tunneling
 
-*   **Wilayah Folder:** `01-multi-vendor-secure-sdwan/`
-*   **Teknologi Inti:** FortiGate, MikroTik RouterOS, Cisco IOS, GRE Tunnel, Firewall Policy.
-*   **Analisis Masalah:** Proyek ini mensimulasikan konektivitas antar-site menggunakan perangkat dari beberapa vendor. Pada tahap awal, konektivitas antar-site direncanakan menggunakan IPsec VPN. Namun, terdapat keterbatasan pada image **FortiGate Trial** yang digunakan sehingga proposal Phase 1 hanya tersedia dengan algoritma DES, sedangkan **MikroTik RouterOS v7** yang digunakan tidak mendukung DES. Setelah menganalisis kendala interoperabilitas tersebut, metode tunneling dialihkan ke **GRE** untuk membangun konektivitas antar-site.
-*   **Validasi:** Pengujian dilakukan dengan memeriksa status tunnel dan konektivitas antar jaringan melalui routing serta ping antar-site.
-*   **Arsitektur Topologi:**
+**Folder:** `01-multi-vendor-secure-sdwan/`
+
+Project multi-vendor yang menghubungkan **FortiGate, MikroTik, dan Cisco** dalam simulasi koneksi antara Head Office dan Branch Office melalui jaringan ISP.
+
+**Teknologi yang digunakan:**
+- FortiGate
+- MikroTik RouterOS
+- Cisco IOL
+- GRE Tunnel
+- IPsec VPN
+- Static Routing
+- DHCP
+
+**Highlight:**
+
+Pada awalnya saya mencoba menggunakan **IPsec VPN**, tetapi menemukan kendala kompatibilitas algoritma enkripsi antara FortiGate Trial yang digunakan dan MikroTik RouterOS v7.
+
+Setelah menganalisis masalah tersebut, saya mengganti metode tunneling menjadi **GRE** agar konektivitas antar-site tetap dapat diuji.
+
+Project ini menjadi salah satu latihan troubleshooting dan multi-vendor yang paling kompleks dalam repositori ini.
 
 ![Topology 1](Topology%201.png)
 
 ---
 
-### Proyek 2: Multi-Protocol Dynamic Route Redistribution Lab
+### 02. Multi-Protocol Dynamic Route Redistribution
 
-*   **Wilayah Folder:** `02-multi-protocol-route-redistribution/`
-*   **Teknologi Inti:** Cisco IOSv, OSPF, EIGRP, eBGP, Mutual Route Redistribution, Seed Metrics.
-*   **Analisis Masalah:** Lab ini mensimulasikan jaringan dengan beberapa routing protocol yang membutuhkan pertukaran informasi routing antar domain. Implementasi berfokus pada proses **mutual redistribution** antara OSPF, EIGRP, dan BGP serta pemahaman terhadap kebutuhan metric ketika sebuah route dipindahkan dari satu routing protocol ke protocol lainnya.
-*   **Validasi:** Pengujian dilakukan dengan memeriksa routing table dan memastikan jaringan yang berasal dari routing protocol berbeda dapat dipelajari oleh router pada domain lainnya.
-*   **Arsitektur Topologi:**
+**Folder:** `02-multi-protocol-route-redistribution/`
+
+Project untuk mempelajari pertukaran informasi routing antara beberapa routing protocol dalam satu jaringan.
+
+**Routing protocol yang digunakan:**
+- EIGRP
+- OSPF
+- eBGP
+- Route Redistribution
+
+Project ini berfokus pada bagaimana route dari satu routing protocol dapat didistribusikan ke routing domain lainnya.
+
+Saya juga mempelajari penggunaan **seed metric pada EIGRP** dan penggunaan parameter `subnets` pada OSPF saat melakukan redistribution.
 
 ![Topology 2](Topology%202.png)
 
 ---
 
-### Proyek 3: Skenario Recursive Static Routing Jarak Jauh
+### 03. Recursive Static Routing
 
-*   **Wilayah Folder:** `03-recursive-static-routing/`
-*   **Teknologi Inti:** Cisco IOSv, Recursive Static Routing, Next-Hop Resolution, VLSM.
-*   **Analisis Masalah:** Lab ini digunakan untuk memahami mekanisme **recursive route lookup**, ketika alamat next-hop pada static route tidak berada pada jaringan yang terhubung langsung. Router harus melakukan pencarian tambahan pada routing table untuk menentukan interface yang digunakan menuju next-hop tersebut.
-*   **Validasi:** Pengujian dilakukan dengan memeriksa routing table dan melakukan konektivitas menuju jaringan tujuan untuk memastikan proses recursive lookup berjalan sesuai rancangan.
-*   **Arsitektur Topologi:**
+**Folder:** `03-recursive-static-routing/`
+
+Project untuk memahami bagaimana router menentukan jalur forwarding ketika static route menggunakan alamat **next-hop** yang tidak terhubung langsung ke interface tujuan.
+
+**Teknologi yang digunakan:**
+- Cisco IOSv
+- Static Routing
+- Recursive Routing
+- Next-Hop Resolution
+- VLSM
+- DHCP
+
+Fokus utama project ini adalah memahami proses **recursive lookup**, yaitu ketika router perlu mencari kembali jalur menuju alamat next-hop sebelum dapat meneruskan packet ke jaringan tujuan.
 
 ![Topology 3](Topology%203.png)
 
 ---
 
-### Proyek 4: Implementasi Arsitektur OSPF Area 0
+### 04. Enterprise OSPF Area 0
 
-*   **Wilayah Folder:** `04-enterprise-ospf-architecture/`
-*   **Teknologi Inti:** Cisco IOL, OSPF Area 0, Neighbor Adjacency, VLSM, Point-to-Point Link.
-*   **Analisis Masalah:** Lab ini berfokus pada implementasi jaringan OSPF menggunakan **Area 0** sebagai backbone area. Tiga router Cisco IOL dikonfigurasi untuk membentuk OSPF neighbor adjacency dan bertukar informasi routing antar jaringan.
-*   **Validasi:** Status adjacency diverifikasi menggunakan status neighbor hingga mencapai kondisi **FULL**, kemudian routing table diperiksa untuk memastikan jaringan remote berhasil dipelajari melalui OSPF.
-*   **Arsitektur Topologi:**
+**Folder:** `04-enterprise-ospf-architecture/`
+
+Project untuk mempraktikkan **OSPF Single-Area** menggunakan Cisco IOL.
+
+Topology terdiri dari beberapa router yang saling terhubung melalui jaringan point-to-point dan beberapa jaringan LAN.
+
+**Teknologi yang digunakan:**
+- Cisco IOL
+- OSPFv2
+- Area 0
+- OSPF Neighbor Adjacency
+- VLSM
+- DHCP
+
+Project ini membantu saya memahami proses pembentukan **OSPF neighbor adjacency**, pertukaran informasi routing, hingga status neighbor mencapai **FULL**.
 
 ![Topology 4](Topology%204.png)
 
 ---
 
-### Proyek 5: Implementasi External BGP Multi-AS
+### 05. External BGP Multi-AS
 
-*   **Wilayah Folder:** `05-bgp-autonomous-system/`
-*   **Teknologi Inti:** Cisco IOL, eBGP, Autonomous System, TCP Port 179, AS-Path.
-*   **Analisis Masalah:** Lab ini digunakan untuk memahami konsep **interdomain routing** menggunakan External BGP. Router dari Autonomous System yang berbeda dikonfigurasi untuk membentuk eBGP peering dan bertukar informasi jaringan.
-*   **Validasi:** Status BGP peer diperiksa hingga mencapai kondisi **Established**. AS-Path juga diamati untuk memahami bagaimana BGP membawa informasi Autonomous System yang dilewati sebuah route serta membantu mencegah routing loop.
-*   **Arsitektur Topologi:**
+**Folder:** `05-bgp-autonomous-system/`
+
+Project untuk mempelajari dasar **External BGP (eBGP)** dan komunikasi routing antar Autonomous System.
+
+Topology menggunakan beberapa AS yang merepresentasikan jaringan enterprise dan provider.
+
+**Teknologi yang digunakan:**
+- Cisco IOL
+- eBGP
+- Autonomous System
+- BGP Neighbor
+- TCP Port 179
+- AS-Path
+- Network Advertisement
+
+Fokus project ini adalah memahami proses pembentukan BGP peering, advertisement prefix, serta penggunaan **AS-Path** dalam proses routing antar-AS.
 
 ![Topology 5](Topology%205.png)
 
 ---
 
-### Proyek 6: Implementasi Dinamis RIPv2 dengan VLSM
+### 06. Dynamic RIPv2 with VLSM
 
-*   **Wilayah Folder:** `06-dynamic-routing-ripv2/`
-*   **Teknologi Inti:** Cisco vIOS L3, RIPv2, VLSM, No Auto-Summary, Split Horizon, Hop Count.
-*   **Analisis Masalah:** Lab ini digunakan untuk memahami kemampuan **RIPv2** dalam mendistribusikan informasi routing pada jaringan dengan subnet mask yang berbeda menggunakan VLSM. Konfigurasi `no auto-summary` digunakan agar informasi subnet tetap dipertahankan dan tidak diringkas berdasarkan classful network boundary.
-*   **Validasi:** Routing table dan konektivitas antar jaringan diperiksa untuk memastikan subnet dengan prefix yang berbeda dapat dipelajari dan dijangkau melalui RIPv2.
-*   **Arsitektur Topologi:**
+**Folder:** `06-dynamic-routing-ripv2/`
+
+Project untuk mempraktikkan routing dinamis menggunakan **RIPv2** pada jaringan dengan subnet yang berbeda-beda.
+
+**Teknologi yang digunakan:**
+- Cisco IOSv
+- RIPv2
+- VLSM
+- `no auto-summary`
+- Split Horizon
+- Hop Count
+
+Project ini membantu saya memahami perbedaan perilaku routing classful dan classless serta pentingnya `no auto-summary` ketika menggunakan VLSM.
 
 ![Topology 6](Topology%206.png)
 
 ---
 
-## Kapabilitas Teknis dan Spesifikasi Sistem Simulator
+## Technical Skills Practiced
 
-*   **Network Operating Systems:** FortiOS, MikroTik RouterOS, Cisco IOSv, Cisco IOL.
-*   **Core Routing Protocols:** OSPFv2, EIGRP, eBGP, RIPv2, Static Routing, Recursive Static Routing.
-*   **Routing Technologies:** Route Redistribution, VLSM, Next-Hop Resolution, Multi-AS Routing.
-*   **Security & Network Technologies:** GRE Tunnel, Firewall Policy, IPsec Architecture, DHCP.
-*   **Simulator Environments:** PNetLab, Cisco Packet Tracer.
-*   **Management Tools:** Winbox, Cisco CLI, FortiGate GUI.
+### Routing
+
+- Static Routing
+- Recursive Static Routing
+- RIPv2
+- OSPFv2
+- EIGRP
+- eBGP
+- Route Redistribution
+- VLSM / Subnetting
+
+### Networking
+
+- TCP/IP
+- IP Addressing
+- DHCP
+- LAN / WAN
+- Next-Hop Resolution
+- Routing Table Analysis
+- Network Connectivity Testing
+
+### Security & Tunneling
+
+- Basic FortiGate Configuration
+- Basic Firewall Policy
+- IPsec VPN Concepts
+- GRE Tunnel
+- Multi-Vendor Connectivity
+
+### Network Platforms
+
+- Cisco IOSv
+- Cisco IOL
+- MikroTik RouterOS
+- FortiGate
 
 ---
 
-## Catatan Portofolio
+## Tools
 
-Seluruh proyek pada repositori ini merupakan **lab simulasi dan eksperimen pembelajaran**, bukan implementasi jaringan production.
+- **PNETLab** — Network emulation and lab environment
+- **Winbox** — MikroTik management
+- **FortiGate GUI** — FortiGate configuration
+- **Cisco CLI** — Cisco device configuration
+- **Cisco Packet Tracer** — Network simulation and practice
 
-Fokus utama portofolio adalah menunjukkan proses **perancangan topologi, konfigurasi perangkat, validasi konektivitas, troubleshooting, serta pemahaman terhadap perilaku routing protocol** dalam lingkungan simulasi.
+---
 
-### Repository Structure
+## How I Approach Each Lab
+
+Setiap project saya kerjakan dengan alur sederhana:
 
 ```text
-Network-Portofolio/
-│
-├── 01-multi-vendor-secure-sdwan/
-├── 02-multi-protocol-route-redistribution/
-├── 03-recursive-static-routing/
-├── 04-enterprise-ospf-architecture/
-├── 05-bgp-autonomous-system/
-├── 06-dynamic-routing-ripv2/
-│
-├── Topology 1.png
-├── Topology 2.png
-├── Topology 3.png
-├── Topology 4.png
-├── Topology 5.png
-└── Topology 6.png
+Design
+  ↓
+Build Topology
+  ↓
+Configure Devices
+  ↓
+Test Connectivity
+  ↓
+Troubleshoot
+  ↓
+Verify Result
+  ↓
+Document
