@@ -46,4 +46,72 @@ Selamat datang di repositori portofolio teknik jaringan saya. Repositori ini men
 
 ### Proyek 4: Implementasi Arsitektur OSPF Area 0
 
-*   **Wilayah Folder:** `04-enterprise-ospf
+*   **Wilayah Folder:** `04-enterprise-ospf-architecture/`
+*   **Teknologi Inti:** Cisco IOL, OSPF Area 0, Neighbor Adjacency, VLSM, Point-to-Point Link.
+*   **Analisis Masalah:** Lab ini berfokus pada implementasi jaringan OSPF menggunakan **Area 0** sebagai backbone area. Tiga router Cisco IOL dikonfigurasi untuk membentuk OSPF neighbor adjacency dan bertukar informasi routing antar jaringan.
+*   **Validasi:** Status adjacency diverifikasi menggunakan status neighbor hingga mencapai kondisi **FULL**, kemudian routing table diperiksa untuk memastikan jaringan remote berhasil dipelajari melalui OSPF.
+*   **Arsitektur Topologi:**
+
+![Topology 4](Topology%204.png)
+
+---
+
+### Proyek 5: Implementasi External BGP Multi-AS
+
+*   **Wilayah Folder:** `05-bgp-autonomous-system/`
+*   **Teknologi Inti:** Cisco IOL, eBGP, Autonomous System, TCP Port 179, AS-Path.
+*   **Analisis Masalah:** Lab ini digunakan untuk memahami konsep **interdomain routing** menggunakan External BGP. Router dari Autonomous System yang berbeda dikonfigurasi untuk membentuk eBGP peering dan bertukar informasi jaringan.
+*   **Validasi:** Status BGP peer diperiksa hingga mencapai kondisi **Established**. AS-Path juga diamati untuk memahami bagaimana BGP membawa informasi Autonomous System yang dilewati sebuah route serta membantu mencegah routing loop.
+*   **Arsitektur Topologi:**
+
+![Topology 5](Topology%205.png)
+
+---
+
+### Proyek 6: Implementasi Dinamis RIPv2 dengan VLSM
+
+*   **Wilayah Folder:** `06-dynamic-routing-ripv2/`
+*   **Teknologi Inti:** Cisco vIOS L3, RIPv2, VLSM, No Auto-Summary, Split Horizon, Hop Count.
+*   **Analisis Masalah:** Lab ini digunakan untuk memahami kemampuan **RIPv2** dalam mendistribusikan informasi routing pada jaringan dengan subnet mask yang berbeda menggunakan VLSM. Konfigurasi `no auto-summary` digunakan agar informasi subnet tetap dipertahankan dan tidak diringkas berdasarkan classful network boundary.
+*   **Validasi:** Routing table dan konektivitas antar jaringan diperiksa untuk memastikan subnet dengan prefix yang berbeda dapat dipelajari dan dijangkau melalui RIPv2.
+*   **Arsitektur Topologi:**
+
+![Topology 6](Topology%206.png)
+
+---
+
+## Kapabilitas Teknis dan Spesifikasi Sistem Simulator
+
+*   **Network Operating Systems:** FortiOS, MikroTik RouterOS, Cisco IOSv, Cisco IOL.
+*   **Core Routing Protocols:** OSPFv2, EIGRP, eBGP, RIPv2, Static Routing, Recursive Static Routing.
+*   **Routing Technologies:** Route Redistribution, VLSM, Next-Hop Resolution, Multi-AS Routing.
+*   **Security & Network Technologies:** GRE Tunnel, Firewall Policy, IPsec Architecture, DHCP.
+*   **Simulator Environments:** PNetLab, Cisco Packet Tracer.
+*   **Management Tools:** Winbox, Cisco CLI, FortiGate GUI.
+
+---
+
+## Catatan Portofolio
+
+Seluruh proyek pada repositori ini merupakan **lab simulasi dan eksperimen pembelajaran**, bukan implementasi jaringan production.
+
+Fokus utama portofolio adalah menunjukkan proses **perancangan topologi, konfigurasi perangkat, validasi konektivitas, troubleshooting, serta pemahaman terhadap perilaku routing protocol** dalam lingkungan simulasi.
+
+### Repository Structure
+
+```text
+Network-Portofolio/
+│
+├── 01-multi-vendor-secure-sdwan/
+├── 02-multi-protocol-route-redistribution/
+├── 03-recursive-static-routing/
+├── 04-enterprise-ospf-architecture/
+├── 05-bgp-autonomous-system/
+├── 06-dynamic-routing-ripv2/
+│
+├── Topology 1.png
+├── Topology 2.png
+├── Topology 3.png
+├── Topology 4.png
+├── Topology 5.png
+└── Topology 6.png
