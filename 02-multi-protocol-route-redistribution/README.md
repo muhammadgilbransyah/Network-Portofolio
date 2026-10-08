@@ -1,4 +1,4 @@
-# Proyek 2: Multi-Protocol Dynamic Route Redistribution Lab 🚀
+# Proyek 2: Multi-Protocol Dynamic Route Redistribution Lab
 ### Integrasi Heterogen Lintas Domain: Cisco EIGRP x OSPF Area 0 x External BGP (eBGP)
 
 ## Deskripsi Proyek
